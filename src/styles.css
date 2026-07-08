@@ -35,8 +35,11 @@ h1{font:700 20px/1 "Space Grotesk",sans-serif;margin:5px 0 0;letter-spacing:-.01
 .lede h2 em{font-style:normal;color:var(--gold)}
 .lede p{color:var(--muted);font-size:15px;margin:0}
 
-.grid{display:grid;grid-template-columns:minmax(0,410px) minmax(0,1fr);gap:20px;align-items:start}
-@media(max-width:920px){.grid{grid-template-columns:1fr}}
+.console{width:100%;margin:0 0 20px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:0 14px}
+.form-grid .spanfull{grid-column:1/-1}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:430px){.form-grid{grid-template-columns:1fr}}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r)}
 .console{padding:20px}
 .console .hd{display:flex;align-items:center;gap:9px;margin-bottom:16px}
@@ -77,10 +80,12 @@ select:focus,input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 
 .empty h4{font:600 16px/1.3 "Space Grotesk",sans-serif;color:var(--text);margin:0 0 6px}
 .empty p{font-size:13.5px;max-width:340px;margin:0}
 
-.plan{display:flex;flex-direction:column;gap:16px}
-.block{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;opacity:0;transform:translateY(10px);animation:rise .5s cubic-bezier(.2,.7,.2,1) forwards}
-@keyframes rise{to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.block{animation:none;opacity:1;transform:none}}
+.plan{columns:2;column-gap:16px}
+.plan>.block{break-inside:avoid}
+@media(max-width:900px){.plan{columns:1}}
+.block{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:0 0 16px;opacity:0;animation:rise .4s ease forwards}
+@keyframes rise{to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.block{animation:none;opacity:1}}
 .b-hd{display:flex;align-items:center;gap:9px;margin:0 0 14px}
 .b-hd .n{font:600 11px/1 "IBM Plex Mono",monospace;color:var(--gold);background:var(--gold-soft);border:1px solid rgba(231,182,103,.3);min-width:24px;height:24px;padding:0 5px;border-radius:7px;display:grid;place-items:center;flex:0 0 auto}
 .b-hd h4{font:600 15px/1 "Space Grotesk",sans-serif;margin:0}
@@ -191,3 +196,10 @@ select:focus,input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 
 .aitag svg{width:11px;height:11px;stroke:var(--violet)}
 .buildnote{font-size:11.5px;color:var(--muted-2);text-align:center;margin:9px 0 0}
 .cdir{font-size:12px;color:var(--violet);margin:0 0 8px;line-height:1.45}
+
+/* API-key prompt banner (shown when no key is connected) */
+.keybanner{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(120deg,rgba(156,140,255,.12),rgba(231,182,103,.10));border:1px solid rgba(156,140,255,.3);border-radius:var(--r);padding:14px 16px;margin:0 0 20px}
+.keybanner .kb-ic{flex:0 0 auto;width:30px;height:30px;border-radius:8px;background:var(--violet);display:grid;place-items:center;margin-top:1px}
+.keybanner .kb-ic svg{width:16px;height:16px;stroke:#fff}
+.keybanner .kb-txt{font-size:13px;color:#cdd6e6;line-height:1.5}
+.keybanner .kb-txt b{color:var(--text)}
